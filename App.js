@@ -5,8 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import ContactsScreen from "./screens/ContactsScreen";
 import { StateProvider } from "./context/StateProvider";
+import NewGroup from "./screens/NewGroup";
 const Stack = createNativeStackNavigator();
-
 
 export default function App() {
   return (
@@ -18,7 +18,12 @@ export default function App() {
             component={HomeScreen}
             options={{ title: "Groups" }}
           />
-          <Stack.Screen name="Contacts" component={ContactsScreen} />
+          <Stack.Screen
+            name="Contacts"
+            component={ContactsScreen}
+            options={{ title: "Add Participants" }}
+          />
+          <Stack.Screen name="New Group" component={NewGroup} />
         </Stack.Navigator>
       </NavigationContainer>
     </StateProvider>

@@ -6,6 +6,8 @@ const StateContext = createContext();
 export const StateProvider = ({ children }) => {
   const [contactsError, setContactsError] = useState("");
   const [contacts, setContacts] = useState([]);
+  const [groups, setGroups] = useState([]);
+  const [group, setGroup] = useState({ groupName: "", contacts: [], id: "" });
 
   useEffect(() => {
     (async () => {
@@ -21,8 +23,6 @@ export const StateProvider = ({ children }) => {
         });
         if (data.length > 0) {
           setContacts(data);
-          // console.log(data);
-          // console.log(data[0].phoneNumbers);
         } else {
           setContactsError("No contacts found");
         }
@@ -37,6 +37,10 @@ export const StateProvider = ({ children }) => {
       value={{
         contacts,
         contactsError,
+        group,
+        groups,
+        setGroup,
+        setGroups,
       }}
     >
       {children}

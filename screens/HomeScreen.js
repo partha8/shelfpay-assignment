@@ -1,14 +1,35 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+} from "react-native";
+import React, { useCallback, useEffect } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useStateContext } from "../context/StateProvider";
 import { AntDesign } from "@expo/vector-icons";
+import GroupCard from "../components/GroupCard";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
+  const { group, setGroup, groups } = useStateContext();
+
+  useFocusEffect(
+    useCallback(() => {
+      setGroup({ groupName: "", contacts: [], id: "" });
+    }, [])
+  );
+
   return (
     <View style={styles.container}>
+      <FlatList
+        data={groups}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <GroupCard {...item} />}
+      />
+
       <TouchableOpacity
         style={styles.newGroupBtn}
         onPress={() => navigation.navigate("Contacts")}
