@@ -6,6 +6,7 @@ import HomeScreen from "./screens/HomeScreen";
 import ContactsScreen from "./screens/ContactsScreen";
 import { StateProvider } from "./context/StateProvider";
 import NewGroup from "./screens/NewGroup";
+import GroupScreen from "./screens/GroupScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
             options={{ title: "Add Participants" }}
           />
           <Stack.Screen name="New Group" component={NewGroup} />
+          <Stack.Screen name="Group Info" component={GroupScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </StateProvider>
