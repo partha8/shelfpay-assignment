@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import * as Contacts from "expo-contacts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const StateContext = createContext();
 
@@ -31,6 +32,19 @@ export const StateProvider = ({ children }) => {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    (async () => {
+      const data = await AsyncStorage.getItem("groups");
+      if (data) {
+        setGroups(JSON.parse(data));
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    AsyncStorage.setItem("groups", JSON.stringify(groups));
+  }, [groups]);
 
   return (
     <StateContext.Provider

@@ -5,16 +5,17 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useStateContext } from "../context/StateProvider";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const NewGroup = () => {
   const [input, setInput] = useState("");
   const { group, setGroup, setGroups, groups } = useStateContext();
   const navigation = useNavigation();
-  
+
   const submitHandler = async () => {
     if (input) {
       const newGroup = {
@@ -22,7 +23,6 @@ const NewGroup = () => {
         groupName: input,
         id: new Date().toString(),
       };
-      console.log(newGroup);
       setGroups((prev) => {
         return [...prev, newGroup];
       });
