@@ -15,4 +15,5 @@
 - @react-navigation/native-stack
 
 ## Preview
-![shelfpay](https://user-images.githubusercontent.com/64675650/218063451-eb850d86-f302-4e4d-94ef-1beac580e07c.gif)
+
+![shelfpay2](https://user-images.githubusercontent.com/64675650/218385491-18592f40-f3a5-4ffe-aae1-da6a14b864b0.gif)
