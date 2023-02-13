@@ -28,7 +28,7 @@ export const StateProvider = ({ children }) => {
           setContactsError("No contacts found");
         }
       } else {
-        setContactsError("Permission ti access contacts denied");
+        setContactsError("Permission to access contacts denied");
       }
     })();
   }, []);
@@ -40,6 +40,7 @@ export const StateProvider = ({ children }) => {
         setGroups(JSON.parse(data));
       }
     })();
+    // AsyncStorage.removeItem("groups");
   }, []);
 
   useEffect(() => {

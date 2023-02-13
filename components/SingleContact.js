@@ -1,17 +1,26 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
-import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import Checkbox from "expo-checkbox";
 import { useStateContext } from "../context/StateProvider";
+import { AntDesign } from "@expo/vector-icons";
 
 const SingleContact = ({ firstName, lastName, name, phoneNumbers, id }) => {
   const [isChecked, setChecked] = useState(false);
+  const [checkCircleIndex, setCheckCircleIndex] = useState(0);
+  const [phoneNumber, setPhoneNumber] = useState();
   const { group, groups, setGroup, setGroups } = useStateContext();
 
   const checkHandler = (value) => {
     if (value) {
       setGroup({
         ...group,
-        contacts: [...group.contacts, { id, name, phoneNumbers, firstName }],
+        contacts: [...group.contacts, { id, name, phoneNumber, firstName }],
       });
     } else {
       setGroup({
@@ -22,16 +31,38 @@ const SingleContact = ({ firstName, lastName, name, phoneNumbers, id }) => {
     setChecked(value);
   };
 
+  useEffect(() => {
+    setPhoneNumber(phoneNumbers[checkCircleIndex]);
+  }, [checkCircleIndex]);
+
   return (
     <View style={styles.container}>
       <View>
         <Text style={styles.name}>{name}</Text>
-        <FlatList
-          style={styles.phoneNumbers}
-          data={phoneNumbers}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <Text>{item.number}</Text>}
-        />
+
+        {phoneNumbers.map((item, index) => {
+          return (
+            <TouchableOpacity
+              key={item.id}
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                marginBottom: 4,
+                width: 200,
+              }}
+              onPress={() => {
+                if (index !== checkCircleIndex) {
+                  setCheckCircleIndex(index);
+                }
+              }}
+            >
+              <Text>{item.number}</Text>
+              {checkCircleIndex === index && (
+                <AntDesign name="checkcircle" size={14} color="green" />
+              )}
+            </TouchableOpacity>
+          );
+        })}
       </View>
 
       <Checkbox

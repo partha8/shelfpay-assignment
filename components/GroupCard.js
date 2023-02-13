@@ -25,6 +25,8 @@ const GroupCard = ({ groupName, contacts, id }) => {
   );
 };
 
+// https://expo.dev/artifacts/eas/5dJYWjCr1zmShoWdGk88sz.apk
+
 const styles = StyleSheet.create({
   card: {
     marginBottom: 8,
