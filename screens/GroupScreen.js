@@ -3,9 +3,7 @@ import React from "react";
 import { useStateContext } from "../context/StateProvider";
 
 const GroupScreen = () => {
-  const { groups, group } = useStateContext();
-
-  console.log(group);
+  const { group } = useStateContext();
 
   return (
     <View style={styles.container}>
@@ -14,7 +12,9 @@ const GroupScreen = () => {
           data={group.contacts}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
-            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.name}>
+              {item.name} : {item.phoneNumber.number}
+            </Text>
           )}
         />
       )}
