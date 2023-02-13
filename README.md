@@ -14,6 +14,9 @@
 - react-navigation/native
 - @react-navigation/native-stack
 
+## Platform
+- Android 
+
 ## Preview
 
 ![shelfpay2](https://user-images.githubusercontent.com/64675650/218385491-18592f40-f3a5-4ffe-aae1-da6a14b864b0.gif)
